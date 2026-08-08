@@ -21,7 +21,7 @@ header {
     height: 35px;
 }
 
-.header-right {
+ul {
     display: flex;
     align-items: center;
     gap: 1.50rem;
