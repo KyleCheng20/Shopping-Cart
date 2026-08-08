@@ -1,9 +1,12 @@
-import './styles/App.css'
+import './styles/App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <>
-      <h1>Shopping Cart</h1>
+      <Header />
+      <Footer />
     </>
   )
 }

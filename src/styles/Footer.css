@@ -1,0 +1,31 @@
+footer {
+    font-size: 1.2rem;
+    padding: 1.3rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    position: relative;
+}
+
+footer a::after {
+    content: "";
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: var(--base-transition);
+}
+
+footer a:hover::after {
+    width: 0;
+}

@@ -1,0 +1,28 @@
+header {
+    background-color: rgb(209, 229, 248);
+    padding: 0.85rem 0;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1900px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right svg {
+    width: 35px;
+    height: 35px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.50rem;
+}
