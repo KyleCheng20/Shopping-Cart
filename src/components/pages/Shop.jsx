@@ -1,5 +1,6 @@
 import { useState ,useEffect } from "react";
 import ProductCard from "../ui/ProductCard";
+import styles from "../../styles/Shop.module.css";
 
 export default function Shop() {
     const [products, setProducts] = useState([]);
@@ -31,21 +32,21 @@ export default function Shop() {
     }, []);
 
     return (
-        <main>
-            <div className="product-cards-container">
+        <main className={styles.main}>
+            <div className={styles.productCardsContainer}>
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
-                    <>
+                    products.map(product => (
                         <ProductCard 
-                            img={products[97].images[0]}
-                            title={products[97].title}
-                            price={products[97].price}
-                            rating={products[97].rating}
-                            stock={products[97].stock}
-                            status={products[97].availabilityStatus}
+                            img={product.images[0]}
+                            title={product.title}
+                            price={product.price}
+                            rating={product.rating}
+                            stock={product.stock}
+                            status={product.availabilityStatus}
                         />
-                    </>
+                    ))
                 )}
             </div>
         </main>
