@@ -1,6 +1,9 @@
 header {
-    background-color: rgb(209, 229, 248);
+    position: sticky;
+    top: 0;
+    background-color: rgb(222, 238, 253);
     padding: 0.85rem 0;
+    z-index: 100;
 }
 
 .header-container {
@@ -9,6 +12,11 @@ header {
     justify-content: space-between;
     max-width: 1900px;
     margin: 0 auto;
+}
+
+.header-left img {
+    width: 70px;
+    height: 70px;
 }
 
 .header-left {
