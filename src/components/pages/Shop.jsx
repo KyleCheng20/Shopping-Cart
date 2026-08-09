@@ -1,4 +1,5 @@
 import { useState ,useEffect } from "react";
+import ProductCard from "../ui/ProductCard";
 
 export default function Shop() {
     const [products, setProducts] = useState([]);
@@ -31,18 +32,22 @@ export default function Shop() {
 
     return (
         <main>
-            {isLoading ? (
-                <p>Loading...</p>
-            ) : (
-                <>
-                    <img src={products[97].images[0]} alt={products.title} />
-                    <h3>{products[97].title}</h3>
-                    <p>Price: ${products[97].price}</p>
-                    <p>Rating: {products[97].rating}/5</p>
-                    <p>Stock: {products[97].stock}</p>
-                    <p>Status: {products[97].availabilityStatus}</p>
-                </>
-            )}
+            <div className="product-cards-container">
+                {isLoading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <>
+                        <ProductCard 
+                            img={products[97].images[0]}
+                            title={products[97].title}
+                            price={products[97].price}
+                            rating={products[97].rating}
+                            stock={products[97].stock}
+                            status={products[97].availabilityStatus}
+                        />
+                    </>
+                )}
+            </div>
         </main>
     )
 }

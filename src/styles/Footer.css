@@ -12,6 +12,7 @@ footer {
 footer a {
     text-decoration: none;
     position: relative;
+    color: black;
 }
 
 footer a::after {
