@@ -42,20 +42,12 @@ export default function Shop() {
 
     return (
         <main className={styles.main}>
-            <button 
-                className="sidebar-btn"
-                onClick={() => setIsOpen(true)}
-            >
-                <svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 26l10-10L12 6"/>
-                </svg>
-            </button>
-
             <DepartmentSidebar 
                 categories={categories}
                 selectedCategory={selectedCategory}
                 onSelectCategory={setSelectedCategory}
                 isOpen={isOpen}
+                onOpen={() => setIsOpen(true)}
                 onClose={() => setIsOpen(false)}
             />
 
