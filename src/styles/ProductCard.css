@@ -42,3 +42,20 @@
     padding: 0.55rem 2rem;
     width: 100%;
 }
+
+.quantity-container {
+    background-color: rgb(196, 225, 252);
+    padding: 0.5rem 1.5rem;
+    width: 100%;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity-container button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+}

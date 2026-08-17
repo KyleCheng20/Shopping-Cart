@@ -1,6 +1,6 @@
 import "../../styles/ProductCard.css";
 
-export default function ProductCard({ img, title, price, rating, stock, status }) {
+export default function ProductCard({ img, title, price, rating, stock, status, onAdd, quantity, onIncrement, onDecrement }) {
     return (
         <div className="product-card">
             <div className="card-top">
@@ -20,7 +20,17 @@ export default function ProductCard({ img, title, price, rating, stock, status }
                 </div>
             </div>
 
-            <button className="add-to-cart-btn">Add to cart</button>
+            {quantity === 0 ? (
+                <button className="add-to-cart-btn" onClick={onAdd}>
+                    Add to cart
+                </button>
+            ) : (
+                <div className="quantity-container">
+                    <button onClick={onDecrement}>-</button>
+                    <span>{quantity} added</span>
+                    <button onClick={onIncrement}>+</button>
+                </div>
+            )}
         </div>
     )
 }

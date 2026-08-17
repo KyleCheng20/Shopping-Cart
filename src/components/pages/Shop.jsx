@@ -1,4 +1,5 @@
 import { useState ,useEffect } from "react";
+import { useOutletContext } from "react-router";
 import ProductCard from "../ui/ProductCard";
 import DepartmentSidebar from "../ui/DepartmentSidebar";
 import styles from "../../styles/Shop.module.css";
@@ -9,6 +10,7 @@ export default function Shop() {
     const [ error, setError ] = useState(null);
     const [ selectedCategory, setSelectedCategory ] = useState("all");
     const [ isOpen, setIsOpen ] = useState(false);
+    const [ cartItems, setCartItems ] = useOutletContext();
 
     useEffect(() => {
         async function fetchProducts() {
@@ -40,6 +42,40 @@ export default function Shop() {
 
     const filteredProducts = selectedCategory === "all" ? products : products.filter(product => product.category === selectedCategory);
 
+    function addToCart(product) {
+        setCartItems(prev => [...prev, 
+            {
+                id: product.id,
+                title: product.title,
+                image: product.images[0],
+                price: product.price,
+                quantity: 1
+            }
+        ]);
+    }
+
+    function getProductQuantity(productId) {
+        const item = cartItems.find(product => product.id === productId);
+
+        return item ? item.quantity : 0;
+    }
+
+    function incrementCartItem(productId) {
+        setCartItems(prev => 
+            prev.map(item => 
+                item.id === productId ? {...item, quantity: item.quantity + 1} : item
+            )
+        );
+    }
+
+    function decrementCartItem(productId) {
+        setCartItems(prev => 
+            prev.map(item => 
+                item.id === productId ? {...item, quantity: item.quantity - 1} : item
+            ).filter(item => item.quantity > 0)
+        );
+    }
+
     return (
         <main className={styles.main}>
             <DepartmentSidebar 
@@ -64,6 +100,10 @@ export default function Shop() {
                             rating={product.rating}
                             stock={product.stock}
                             status={product.availabilityStatus}
+                            onAdd={() => addToCart(product)}
+                            quantity={getProductQuantity(product.id)}
+                            onIncrement={() => incrementCartItem(product.id)}
+                            onDecrement={() => decrementCartItem(product.id)}
                         />
                     ))
                 )}
