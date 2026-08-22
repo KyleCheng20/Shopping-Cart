@@ -1,8 +1,13 @@
 import "../styles/Header.css";
 import { Link } from "react-router";
+import { useCart } from "../App";
 import shopLogo from "../assets/icons/shopLogo.png";
 
 export default function Header() {
+    const { cartItems } = useCart();
+    
+    const cartCount = cartItems.reduce((total, currItem) => total + currItem.quantity, 0);
+
     return (
         <header>
             <div className="header-container">
@@ -15,8 +20,8 @@ export default function Header() {
                     <nav>
                         <ul>
                             <Link to="/">Home</Link>
-                            <Link to="shop">Shop</Link>
-                            <Link to="cart">
+                            <Link to="/shop">Shop</Link>
+                            <Link to="/cart" className="cart-link">
                                 <svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                     width="800px" height="800px" viewBox="0 0 446.853 446.853"
                                     xml:space="preserve">
@@ -33,6 +38,9 @@ export default function Header() {
                                         M327.373,409.814c-10.543,0-19.116-8.573-19.116-19.116s8.573-19.117,19.116-19.117s19.116,8.574,19.116,19.117
                                         S337.916,409.814,327.373,409.814z"/>
                                 </svg>
+                                {cartCount > 0 && (
+                                    <span className="cart-count">{cartCount}</span>
+                                )}
                             </Link>
                         </ul>
                     </nav>

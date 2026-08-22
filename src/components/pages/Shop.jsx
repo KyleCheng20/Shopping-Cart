@@ -1,5 +1,5 @@
 import { useState ,useEffect } from "react";
-import { useOutletContext } from "react-router";
+import { useCart } from "../../App";
 import ProductCard from "../ui/ProductCard";
 import DepartmentSidebar from "../ui/DepartmentSidebar";
 import styles from "../../styles/Shop.module.css";
@@ -10,7 +10,7 @@ export default function Shop() {
     const [ error, setError ] = useState(null);
     const [ selectedCategory, setSelectedCategory ] = useState("all");
     const [ isOpen, setIsOpen ] = useState(false);
-    const [ cartItems, setCartItems ] = useOutletContext();
+    const { cartItems, setCartItems } = useCart();
 
     useEffect(() => {
         async function fetchProducts() {
@@ -90,6 +90,8 @@ export default function Shop() {
             <div className={styles.productCardsContainer}>
                 {isLoading ? (
                     <p>Loading...</p>
+                ) : error ? (
+                    <p>Error: {error}</p>
                 ) : (
                     filteredProducts.map(product => (
                         <ProductCard
